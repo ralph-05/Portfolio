@@ -1,0 +1,328 @@
+/* ==========================================================================
+   carousel.css — 3D skill carousel
+   --------------------------------------------------------------------------
+   Layered on top of style.css. Cards are spread horizontally around a front
+   card; JS updates their offset, scale, opacity, and depth as the active card
+   changes.
+
+   Model
+     .sk3d-shell   — perspective wrapper + edge fade
+       .sk3d-stage — the carousel area
+         .sk3d-card — one skill; front + back face
+       .sk3d-controls — prev / dots / next
+
+   The card position is a flat translate/scale transform so pointer hit-testing
+   matches the visible cards; only the card faces use 3D rotation for flipping.
+   ========================================================================== */
+
+/* ---------- Stage ---------- */
+.sk3d-shell {
+    position: relative;
+    display: grid;
+    place-items: center;
+    /* Perspective is kept on the shell so the card flip reads with depth. */
+    perspective: 1400px;
+    perspective-origin: 50% 45%;
+    padding: 1rem 0 .25rem;
+}
+
+.sk3d-stage {
+    position: relative;
+    height: var(--sk3d-card-h, 400px);
+    /* Wider than one card so the spread neighbours have room to sit. */
+    width: calc(var(--sk3d-card-w, 300px) * 2.6);
+}
+
+/* While dragging, drop the transition for a 1:1 follow. */
+.sk3d-shell.is-dragging .sk3d-stage { transition: none; }
+
+/* ---------- Card ----------
+   Cards are positioned in 2D (translate + scale) driven by JS via
+   --sk3d-x / --sk3d-scale. This looks 3D but hit-tests exactly, because Chrome
+   hit-tests pointer events against a rotated/translated element's OWN transform
+   matrix — a true rotateY/translateZ card would swallow clicks aimed at the
+   visible front card. The card flip still uses a real rotateY on the two faces
+   (both at Z=0), which hit-tests fine. */
+.sk3d-card {
+    position: absolute;
+    /* Centre the card in the (wider) stage, then offset it by --sk3d-x. */
+    left: 50%;
+    top: 0;
+    width: var(--sk3d-card-w, 300px);
+    height: 100%;
+    margin-left: calc(var(--sk3d-card-w, 300px) / -2);
+    transform: translateX(var(--sk3d-x, 0px)) scale(var(--sk3d-scale, 1));
+    transform-origin: 50% 50%;
+    /* Eased travel between cards; disabled while dragging for a 1:1 follow. */
+    transition: transform .62s var(--ease-out),
+                opacity .42s var(--ease),
+                filter .42s var(--ease);
+    will-change: transform, opacity, filter;
+}
+.sk3d-shell.is-dragging .sk3d-card { transition: none; }
+
+.sk3d-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    /* Content must never exceed the card — it is clipped (overflow:hidden),
+       and anything pushed past the edge becomes unclickable. */
+    overflow: hidden;
+    padding: 1.5rem 1.4rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    /* Only one face of a card is ever visible. */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: transform .52s var(--ease-out);
+}
+
+/* Accent wash at the top of the card; the colour is set inline from JS. */
+.sk3d-face::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 90% at 50% 0%, var(--sk3d-accent, rgba(var(--primary-rgb), .22)), transparent 65%);
+    opacity: .9;
+    pointer-events: none;
+}
+
+/* ---------- Front face ---------- */
+.sk3d-front { align-items: center; justify-content: space-between; gap: .7rem; }
+
+/* Only the front card shows its text. Side cards keep just the icon and ring —
+   with cards this wide on a tight ring, showing every title makes adjacent
+   headings physically collide and the row reads as noise. */
+.sk3d-title,
+.sk3d-blurb,
+.sk3d-flip-btn {
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity .36s var(--ease), transform .36s var(--ease-out);
+}
+.sk3d-card.is-active .sk3d-title { opacity: 1; transform: none; transition-delay: .1s; }
+.sk3d-card.is-active .sk3d-blurb { opacity: 1; transform: none; transition-delay: .16s; }
+.sk3d-card.is-active .sk3d-flip-btn {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition-delay: .22s;
+}
+
+.sk3d-icon {
+    width: 62px;
+    height: 62px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    font-size: 1.8rem;
+    color: #fff;
+    background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+    box-shadow: 0 14px 30px -12px rgba(var(--primary-rgb), .9);
+    flex: none;
+}
+
+.sk3d-title { font-size: 1.12rem; margin: 0; line-height: 1.3; }
+
+.sk3d-blurb {
+    color: var(--muted);
+    font-size: .88rem;
+    margin: 0;
+    max-width: 34ch;
+    /* Clamp so a long blurb can never push the card content past its fixed
+       height — that would clip the Details button and make it unclickable. */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Circular proficiency ring drawn with a conic-gradient. */
+.sk3d-ring {
+    --p: 0; /* 0–100, driven by JS */
+    width: 82px;
+    height: 82px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: conic-gradient(var(--primary) calc(var(--p) * 1%), var(--surface-3) 0);
+    position: relative;
+}
+.sk3d-ring::after {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border-radius: 50%;
+    background: var(--surface);
+}
+.sk3d-ring > * { position: relative; z-index: 1; }
+.sk3d-ring-value {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--heading);
+    line-height: 1;
+}
+.sk3d-ring-label {
+    display: block;
+    font-size: .6rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+/* ---------- Back face ---------- */
+.sk3d-back {
+    justify-content: center;
+    gap: .9rem;
+    text-align: left;
+    /* Pre-rotated so it only shows once the card is flipped.
+       JS overrides this when the user flips the front card. */
+    transform: rotateY(180deg);
+}
+.sk3d-back .sk3d-face-title {
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    margin: 0;
+}
+.sk3d-back .sk3d-face-title i { color: var(--primary); }
+
+.sk3d-tags { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; }
+.sk3d-tags li {
+    font-size: .86rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+}
+.sk3d-tags li::before {
+    content: "\F26E"; /* bootstrap-icons check */
+    font-family: "bootstrap-icons";
+    color: var(--success);
+    font-size: .72rem;
+}
+
+/* Details / Back button on both faces. An explicit button is used instead of
+   click-to-flip-the-card because 3D-transformed surfaces do not reliably
+   receive pointer events in Chrome (it hit-tests against the element's own
+   transform matrix, not the flat area the user sees). */
+.sk3d-flip-btn {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .5rem 1rem;
+    font-size: .8rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--heading);
+    background: var(--surface-2);
+    border: 1px solid var(--border-color);
+    border-radius: 100px;
+    cursor: pointer;
+    flex: none;
+    transition: background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), opacity .3s var(--ease), transform .3s var(--ease);
+}
+.sk3d-flip-btn:hover {
+    color: #fff;
+    background: var(--primary);
+    border-color: transparent;
+}
+.sk3d-back .sk3d-flip-btn { align-self: flex-start; margin-top: 1rem; }
+.sk3d-flip-hint i { vertical-align: -1px; }
+
+/* ---------- Controls ---------- */
+.sk3d-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.1rem;
+    margin-top: 1.75rem;
+}
+
+.sk3d-btn {
+    width: 46px;
+    height: 46px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--surface);
+    color: var(--heading);
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: transform .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
+}
+.sk3d-btn:hover {
+    border-color: rgba(var(--primary-rgb), .55);
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.sk3d-dots { display: flex; align-items: center; gap: .55rem; list-style: none; padding: 0; margin: 0; }
+.sk3d-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border-radius: 50%;
+    border: 0;
+    background: var(--surface-3);
+    cursor: pointer;
+    transition: all .3s var(--ease);
+}
+.sk3d-dot:hover { background: var(--muted); }
+.sk3d-dot.active {
+    width: 26px;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
+}
+
+@media (max-width: 575.98px) {
+    .sk3d-shell { --sk3d-card-w: 230px; --sk3d-card-h: 380px; }
+    .sk3d-stage { width: calc(var(--sk3d-card-w) * 2.4); }
+    .sk3d-icon { width: 52px; height: 52px; font-size: 1.5rem; border-radius: 15px; }
+    .sk3d-ring { width: 70px; height: 70px; }
+    .sk3d-ring-value { font-size: 1.05rem; }
+    .sk3d-title { font-size: 1rem; }
+    .sk3d-blurb { font-size: .82rem; -webkit-line-clamp: 3; }
+}
+
+/* ---------- Reduced motion / no-JS fallback ----------
+   Drop the 3D entirely and lay the cards out as a plain readable list. There is
+   no front card in this mode, so every card must show its text. */
+@media (prefers-reduced-motion: reduce) {
+    .sk3d-shell { perspective: none; }
+    .sk3d-stage { width: 100%; }
+    .sk3d-card {
+        position: relative;
+        inset: auto;
+        left: auto;
+        top: auto;
+        width: auto;
+        height: auto;
+        margin: 0 0 1.25rem;
+        transform: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+        visibility: visible !important;
+        transition: none;
+    }
+    .sk3d-face { position: relative; min-height: 260px; }
+    .sk3d-title, .sk3d-blurb { opacity: 1 !important; transform: none !important; }
+    .sk3d-flip-btn { display: none; }
+    .sk3d-back { display: none; }
+    .sk3d-controls { display: none; }
+}

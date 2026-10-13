@@ -1,0 +1,384 @@
+/* ==========================================================================
+   resume.css — Styles for the dedicated résumé page (resume.html)
+   Paper-like layout, screen + print ready.
+   ========================================================================== */
+
+.resume-page {
+    background: var(--surface);
+    padding-bottom: 4rem;
+}
+
+/* ---------- Toolbar ---------- */
+.resume-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: .85rem 0;
+    background: var(--nav-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* ---------- Sheet ---------- */
+.resume-sheet {
+    max-width: 1060px;
+    margin-top: 2rem;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ---------- Header ---------- */
+.r-header {
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(90deg, var(--grad-a), var(--grad-b), transparent) 1;
+    margin-bottom: 2rem;
+}
+.r-header-main {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+.r-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid transparent;
+    background:
+        linear-gradient(var(--body-bg), var(--body-bg)) padding-box,
+        linear-gradient(135deg, var(--grad-a), var(--grad-b)) border-box;
+    flex: 0 0 auto;
+}
+.r-name {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0;
+    line-height: 1.1;
+    background: linear-gradient(100deg, var(--grad-a), var(--grad-b));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.r-title {
+    color: var(--primary);
+    font-weight: 600;
+    margin: .25rem 0 .9rem;
+    font-size: 1.05rem;
+}
+.r-contact-line {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem 1.4rem;
+    padding: 0;
+    margin: 0;
+    font-size: .88rem;
+    color: var(--muted);
+}
+.r-contact-line i { color: var(--primary); margin-right: .3rem; }
+.r-availability {
+    margin-top: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--success);
+    background: rgba(46, 204, 113, .12);
+    border: 1px solid rgba(46, 204, 113, .3);
+    border-radius: 100px;
+    padding: .4rem 1rem;
+}
+.r-availability i { font-size: .5rem; animation: pulse 1.8s infinite; }
+
+/* ---------- Grid ---------- */
+.r-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr);
+    gap: 2.5rem;
+}
+.r-side {
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    align-self: start;
+}
+
+/* ---------- Sections ---------- */
+.r-section { margin-bottom: 2.25rem; }
+.r-section:last-child { margin-bottom: 0; }
+.r-section-title {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: 1.02rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--heading);
+    padding-bottom: .55rem;
+    margin-bottom: 1.1rem;
+    border-bottom: 2px solid rgba(var(--primary-rgb), .28);
+}
+.r-section-title i { color: var(--primary); font-size: 1.1rem; }
+.r-sub {
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+    margin: 1.1rem 0 .5rem;
+}
+.r-main p, .r-side p { color: var(--muted); font-size: .93rem; margin: 0; }
+.r-text { margin-top: .4rem !important; }
+
+/* ---------- Items ---------- */
+.r-item { margin-bottom: 1.75rem; break-inside: avoid; }
+.r-item:last-child { margin-bottom: 0; }
+.r-item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: .4rem;
+}
+.r-item h3 { font-size: 1.02rem; margin: 0; color: var(--heading); }
+.r-org { color: var(--primary) !important; font-size: .88rem; font-weight: 600; }
+.r-period {
+    flex: 0 0 auto;
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--muted);
+    background: var(--surface-2);
+    border: 1px solid var(--border-color);
+    border-radius: 100px;
+    padding: .2rem .75rem;
+    white-space: nowrap;
+}
+.r-period-inline { font-size: .76rem; color: var(--muted); }
+.r-item ul {
+    margin: .6rem 0 0;
+    padding-left: 1.15rem;
+    color: var(--muted);
+    font-size: .91rem;
+}
+.r-item ul li { margin-bottom: .3rem; }
+.r-item ul li::marker { color: var(--primary); }
+.r-compact { margin-bottom: 1.1rem; }
+
+/* ---------- Sidebar widgets ---------- */
+.r-metrics {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .75rem;
+}
+.r-metrics li {
+    background: var(--surface-2);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: .7rem .5rem;
+    text-align: center;
+}
+.r-metrics strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--primary);
+    line-height: 1.1;
+}
+.r-metrics span { font-size: .72rem; color: var(--muted); }
+
+.r-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+.r-tags span {
+    font-size: .76rem;
+    font-weight: 500;
+    color: var(--heading);
+    background: var(--surface-2);
+    border: 1px solid var(--border-color);
+    border-radius: 100px;
+    padding: .22rem .65rem;
+}
+
+.r-certs, .r-lang { list-style: none; padding: 0; margin: 0; display: grid; gap: .6rem; }
+.r-certs li, .r-lang li {
+    font-size: .85rem;
+    color: var(--muted);
+    padding-left: 1rem;
+    position: relative;
+}
+.r-certs li::before, .r-lang li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: .55em;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+.r-certs strong { display: block; color: var(--heading); font-size: .87rem; }
+
+/* ---------- Footer ---------- */
+.r-footer {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-size: .8rem;
+    color: var(--muted);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991.98px) {
+    .r-grid { grid-template-columns: 1fr; }
+    .r-side { order: -1; }
+    .r-header-main { justify-content: center; text-align: center; }
+    .r-contact-line { justify-content: center; }
+}
+
+@media (max-width: 575.98px) {
+    .resume-sheet { padding: 1.25rem; }
+    .r-metrics { grid-template-columns: repeat(2, 1fr); }
+    .r-item-head { flex-direction: column; gap: .3rem; }
+}
+
+/* ---------- Print ---------- */
+@media print {
+    @page { size: A4; margin: 11mm; }
+
+    .resume-page { background: #fff !important; padding: 0 !important; }
+
+    .resume-sheet {
+        max-width: none;
+        width: 100%;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        background: #fff !important;
+    }
+
+    /* ---------- Grid ----------
+       The tablet/mobile breakpoint (max-width: 991.98px) ALSO matches while
+       printing, because the print viewport is only ~794px wide. Reset it so the
+       sidebar keeps its intended order on the right and its own track size. */
+    .r-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 6mm;
+        align-items: start;
+    }
+    .r-side { order: 0; }
+
+    /* Kill the filled sidebar panel: a grid item taller than one page
+       fragments across pages and leaves a large empty grey slab behind. */
+    .r-side {
+        background: transparent !important;
+        border: 0 !important;
+        border-left: 1px solid #dfe3ec !important;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0 0 0 5mm;
+    }
+
+    /* ---------- Header ---------- */
+    .r-header {
+        margin-bottom: 4mm;
+        padding-bottom: 2.5mm;
+        border-image: linear-gradient(90deg, #3355cc, #7a4fd6, transparent) 1;
+    }
+    .r-header-main { gap: 6mm; }
+    .r-photo { width: 20mm; height: 20mm; border-width: 2px; }
+    .r-name { font-size: 21pt; }
+    .r-title { font-size: 11pt; margin: .6mm 0 2mm; }
+    .r-contact-line { font-size: 9.4pt; gap: 1mm 6mm; }
+    .r-availability {
+        margin-top: 2.5mm;
+        font-size: 9pt;
+        padding: .8mm 3mm;
+    }
+    .r-availability i { animation: none; }
+
+    /* ---------- Type scale ----------
+       Sized so both columns run to a near-full second A4 page: readable on
+       screen and on paper, with no orphan page. */
+    .r-section { margin-bottom: 5mm; }
+    .r-section-title {
+        font-size: 10.4pt;
+        letter-spacing: .08em;
+        padding-bottom: 1mm;
+        margin-bottom: 2.2mm;
+    }
+    .r-sub { font-size: 8.6pt; margin: 2.8mm 0 1.4mm; }
+    .r-main p, .r-side p { font-size: 10.2pt; line-height: 1.4; }
+
+    .r-item { margin-bottom: 4mm; }
+    .r-item-head { align-items: baseline; gap: 2mm; }
+    .r-item-head > div { flex: 1 1 auto; min-width: 0; }
+    .r-item h3 { font-size: 11.2pt; line-height: 1.25; }
+    .r-org { font-size: 9.8pt; }
+    .r-period { font-size: 8.2pt; padding: .3mm 2mm; }
+    .r-period-inline { font-size: 8.4pt; }
+    .r-item ul {
+        font-size: 10.2pt;
+        line-height: 1.4;
+        margin-top: 1.4mm;
+        padding-left: 4.5mm;
+    }
+    .r-item ul li { margin-bottom: 1mm; }
+    .r-compact { margin-bottom: 3mm; }
+
+    .r-tags { gap: 1.1mm; }
+    .r-tags span { font-size: 8.6pt; padding: .3mm 1.8mm; }
+    .r-certs, .r-lang { gap: 2mm; }
+    .r-certs li, .r-lang li { font-size: 9.4pt; line-height: 1.34; }
+    .r-certs strong { font-size: 9.7pt; }
+
+    .r-metrics { gap: 1.5mm; }
+    .r-metrics li { padding: 1.6mm .8mm; }
+    .r-metrics strong { font-size: 15pt; }
+    .r-metrics span { font-size: 7.8pt; }
+
+    .r-footer { margin-top: 4mm; padding-top: 2mm; font-size: 8.5pt; }
+
+    /* ---------- Break control ---------- */
+    .r-header-main, .r-item, .r-metrics li, .r-certs li, .r-item-head { break-inside: avoid; }
+    .r-section { break-inside: auto; }
+    .r-section-title, .r-sub, .r-item-head { break-after: avoid; }
+    p, li { orphans: 2; widows: 2; }
+
+    /* ---------- Colour flattening ---------- */
+    .r-name {
+        background: none !important;
+        -webkit-text-fill-color: #0d1424 !important;
+        color: #0d1424 !important;
+    }
+
+    h1, h2, h3, h4, h5, h6, .r-item h3, .r-section-title {
+        color: #0d1424 !important;
+        -webkit-text-fill-color: #0d1424 !important;
+    }
+
+    .r-title, .r-org, .r-metrics strong, .r-sub, .r-section-title i, .r-contact-line i {
+        color: #3355cc !important;
+        -webkit-text-fill-color: #3355cc !important;
+    }
+
+    .r-main p, .r-side p, .r-item ul, .r-contact-line, .r-certs li, .r-lang li, .r-tags span, .r-period {
+        color: #333a49 !important;
+        -webkit-text-fill-color: #333a49 !important;
+    }
+
+    .r-tags span, .r-period, .r-metrics li {
+        background: #f2f4f9 !important;
+        border-color: #dfe3ec !important;
+    }
+
+    .r-availability { background: #eefaf2 !important; border-color: #bfe8cf !important; color: #17864a !important; }
+    .r-footer { border-top-color: #dfe3ec !important; color: #666 !important; }
+}

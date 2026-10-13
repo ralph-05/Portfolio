@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio of Ralph Laurence O. Bayya — IT graduate specialising in networking and security. Cisco LAN, system administration, cybersecurity and full-stack web development." />
+    <meta name="author" content="Ralph Laurence O. Bayya" />
+    <meta name="theme-color" content="#070b14" />
+
+    <title>Ralph Laurence O. Bayya | IT Graduate · Network &amp; Security</title>
+
+    <!-- Social preview -->
+    <meta property="og:title" content="Ralph Laurence O. Bayya | IT Graduate · Network &amp; Security" />
+    <meta property="og:description" content="Networking, system administration, cybersecurity and full-stack development. Open to IT roles." />
+    <meta property="og:type" content="website" />
+
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/carousel.css" rel="stylesheet" />
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="120" tabindex="0">
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ============ PRELOADER ============ -->
+    <div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading">
+        <div class="preloader-inner">
+            <div class="preloader-ring"><span></span><span></span><span></span></div>
+            <p class="preloader-text">Connecting<span class="dots"></span></p>
+        </div>
+    </div>
+
+    <!-- ============ SCROLL PROGRESS ============ -->
+    <div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
+
+    <!-- Film grain overlay (kills gradient banding, adds depth) -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- ============ BACK TO TOP ============ -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- ============ NAVBAR ============ -->
+    <nav id="mainNav" class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+                <span class="brand-mark">&lt;/&gt;</span>
+                <span class="brand-text">Ralph<span class="brand-accent">Bayya</span></span>
+            </a>
+
+            <div class="d-flex align-items-center gap-2 order-lg-3">
+                <button id="themeToggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+                    <i class="bi bi-sun-fill theme-icon-light"></i>
+                    <i class="bi bi-moon-stars-fill theme-icon-dark"></i>
+                </button>
+                <a class="btn btn-sm btn-primary d-none d-sm-inline-flex align-items-center gap-2" href="#resume">
+                    <i class="bi bi-file-earmark-person"></i> Résumé
+                </a>
+                <button class="navbar-toggler border-0 shadow-none" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#navMenu"
+                        aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse order-lg-2" id="navMenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Capabilities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#awards">Recognition</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-2 d-lg-none">
+                        <a class="btn btn-sm btn-primary w-100" href="#contact">Get in touch</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+
+        <!-- ============ HERO ============ -->
+        <header id="home" class="hero section">
+            <div class="glow-orb go-1" aria-hidden="true"></div>
+            <div class="glow-orb go-2" aria-hidden="true"></div>
+            <div class="glow-orb go-3" aria-hidden="true"></div>
+            <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+            <div class="hero-grid-overlay" aria-hidden="true"></div>
+
+            <div class="container position-relative">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-7">
+                        <span class="badge-eyebrow reveal">
+                            <i class="bi bi-circle-fill pulse-dot"></i> Open to IT roles — network ops, sysadmin &amp; support
+                        </span>
+
+                        <h1 class="hero-title reveal">
+                            Hi, I'm <span class="text-gradient">Ralph Bayya</span><br />
+                            I build <span class="typewriter" data-words='["reliable networks.","secure systems.","working software.","clean infrastructure."]' aria-label="reliable networks"></span>
+                        </h1>
+
+                        <p class="hero-lead reveal">
+                            IT graduate specialising in <strong>networking and security</strong>, with hands-on
+                            experience supporting live office and school networks — from redesigning a regional
+                            LAN topology and installing Starlink backhaul, to enforcing content safety on a
+                            school's connection.
+                        </p>
+
+                        <div class="hero-actions reveal">
+                            <a href="#projects" class="btn btn-primary btn-lg">
+                                <i class="bi bi-folder2-open me-2"></i>View my projects
+                            </a>
+                            <a href="#contact" class="btn btn-outline-light btn-lg">
+                                <i class="bi bi-chat-dots me-2"></i>Let's talk
+                            </a>
+                            <button class="btn btn-link btn-lg text-decoration-none resume-trigger" data-bs-toggle="modal" data-bs-target="#quickResume">
+                                <i class="bi bi-eye me-2"></i>Quick résumé
+                            </button>
+                        </div>
+
+                        <ul class="hero-stats reveal" id="heroStats"><!-- filled by JS from data.js --></ul>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="hero-visual reveal">
+                            <div class="avatar-frame">
+                                <img src="assets/img/PIC_raprap.png" alt="Portrait of Ralph Laurence O. Bayya"
+                                     class="img-fluid" width="420" height="420" />
+                                <span class="avatar-badge"><i class="bi bi-router-fill"></i></span>
+                            </div>
+                            <div class="floating-card fc-1">
+                                <i class="bi bi-patch-check-fill"></i> UI&UX Design &amp; Development
+                            </div>
+                            <div class="floating-card fc-2">
+                                <i class="bi bi-shield-lock-fill"></i> Security first
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#about" class="scroll-hint" aria-label="Scroll to about section">
+                <span class="mouse"><span></span></span>
+            </a>
+        </header>
+
+        <!-- ============ MARQUEE / TECH STRIP ============ -->
+        <section class="tech-strip" aria-label="Technologies I work with">
+            <div class="marquee" data-marquee>
+                <div class="marquee-track" id="marqueeTrack">
+                    <!-- filled by JS from data.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ ABOUT ============ -->
+        <section id="about" class="section section-light">
+            <div class="container">
+                <div class="section-head text-center reveal">
+                    <span class="section-kicker">Get to know me</span>
+                    <h2 class="section-title">About <span class="text-gradient">Me</span></h2>
+                    <p class="section-sub">Network &amp; security track, hands-on since day one.</p>
+                </div>
+
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-5 reveal">
+                        <div class="about-photo">
+                            <img src="assets/img/workspace.svg" alt="Network rack and cabling illustration" class="img-fluid" />
+                        </div>
+                        <div class="about-experience">
+                            <strong>9</strong><span>Certifications earned in 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7 reveal">
+                        <p class="fs-5 text-body-secondary">
+                            I'm an Information Technology graduate from the <strong>University of the
+                            Cordilleras</strong>, specialising in networking and security. My degree gave me the
+                            theory — the real learning came from supporting live networks: a regional government
+                            office in La Trinidad, and a school in Unzad.
+                        </p>
+                        <p class="text-body-secondary">
+                            At DOST-CAR I diagnosed dead zones across the building, helped redesign the LAN
+                            topology, installed Starlink as satellite backhaul and terminated the cabling that
+                            carries it. At Unzad Elementary School I enforce content safety and network access
+                            policy every week. Alongside that I build web software — a cafeteria POS with
+                            analytics as my capstone, and an intern attendance system as project lead.
+                        </p>
+
+                        <div class="row g-3 mt-3">
+                            <div class="col-sm-6">
+                                <ul class="fact-list">
+                                    <li><i class="bi bi-geo-alt-fill"></i> Unzad, Villasis, Pangasinan</li>
+                                    <li><i class="bi bi-envelope-fill"></i> ralphlaurencebayya@gmail.com</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6">
+                                <ul class="fact-list">
+                                    <li><i class="bi bi-mortarboard-fill"></i> <strong>BSIT, Network &amp; Security</strong></li>
+                                    <li><i class="bi bi-telephone-fill"></i> +63 991 182 9525</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="about-actions mt-4">
+                            <a href="#contact" class="btn btn-primary"><i class="bi bi-send me-2"></i>Get in touch</a>
+                            <a href="resume.html" class="btn btn-outline-primary"><i class="bi bi-file-earmark-arrow-down me-2"></i>Download résumé</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SERVICES ============ -->
+        <section id="services" class="section">
+            <div class="container">
+                <div class="section-head text-center reveal">
+                    <span class="section-kicker">What I bring</span>
+                    <h2 class="section-title">Skills &amp; <span class="text-gradient">Capabilities</span></h2>
+                    <p class="section-sub">What I can actually do on day one in an IT role.</p>
+                </div>
+
+                <div class="row g-4" id="servicesGrid"><!-- JS --></div>
+            </div>
+        </section>
+
+        <!-- ============ SKILLS ============ -->
+        <section id="skills" class="section section-light">
+            <div class="container">
+                <div class="section-head text-center reveal">
+                    <span class="section-kicker">Toolbox</span>
+                    <h2 class="section-title">Technical <span class="text-gradient">Skills</span></h2>
+                    <p class="section-sub">A networking-first stack, backed by hands-on software work.</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-7 reveal">
+                        <!-- 3D carousel — content rendered by main.js from data.js `skills`.
+                             The <noscript> fallback keeps the text readable without JS. -->
+                        <div id="skillCarousel" class="sk3d-root" aria-roledescription="carousel"
+                             aria-label="Technical skills carousel">
+                            <div class="sk3d-shell">
+                                <div class="sk3d-stage" id="sk3dStage"><!-- JS --></div>
+                            </div>
+
+                            <div class="sk3d-controls" id="sk3dControls">
+                                <button type="button" class="sk3d-btn" id="sk3dPrev" aria-label="Previous skill">
+                                    <i class="bi bi-chevron-left"></i>
+                                </button>
+                                <ul class="sk3d-dots" id="sk3dDots" role="tablist" aria-label="Choose a skill"></ul>
+                                <button type="button" class="sk3d-btn" id="sk3dNext" aria-label="Next skill">
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <noscript>
+                            <div class="sk3d-fallback">
+                                <p class="text-body-secondary">Enable JavaScript to browse the 3D skill carousel.</p>
+                            </div>
+                        </noscript>
+                    </div>
+
+                    <div class="col-lg-5 reveal">
+                        <div class="skill-aside">
+                            <h3 class="h5 mb-3"><i class="bi bi-boxes me-2 text-primary"></i>Toolkits</h3>
+                            <div class="chip-cloud" id="toolChips"><!-- JS --></div>
+
+                            <h3 class="h5 mt-4 mb-3"><i class="bi bi-award me-2 text-primary"></i>Certifications</h3>
+                            <ul class="cert-list" id="certList"><!-- JS --></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PORTFOLIO / WORK ============ -->
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-head text-center reveal">
+                    <span class="section-kicker">Selected work</span>
+                    <h2 class="section-title">Featured <span class="text-gradient">Projects</span></h2>
+                    <p class="section-sub">Infrastructure, security and software — work done for real organisations.</p>
+                </div>
+
+                <div class="filter-bar reveal" role="tablist" aria-label="Project filters">
+                    <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+                    <button class="filter-btn" data-filter="network" role="tab" aria-selected="false">Networking</button>
+                    <button class="filter-btn" data-filter="security" role="tab" aria-selected="false">Security</button>
+                    <button class="filter-btn" data-filter="systems" role="tab" aria-selected="false">Systems</button>
+                    <button class="filter-btn" data-filter="web" role="tab" aria-selected="false">Web Apps</button>
+                </div>
+
+                <div class="row g-4" id="projectsGrid"><!-- JS --></div>
+
+                <p class="text-center mt-5 reveal">
+                    <a href="#" class="btn btn-outline-primary" id="loadMoreBtn">Load more projects</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- ============ RESUME ============ -->
+        <section id="resume" class="section section-light">
+            <div class="container">
+                <div class="section-head text-center reveal">
+                    <span class="section-kicker">Curriculum vitae</span>
+                    <h2 class="section-title">My <span class="text-gradient">Résumé</span></h2>
+                    <p class="section-sub">Experience, education and the work I'm proudest of.</p>
+                    <div class="resume-actions reveal">
+                        <a href="resume.html" class="btn btn-primary" target="_blank" rel="noopener">
+                            <i class="bi bi-file-earmark-pdf me-2"></i>Full résumé (print / PDF)
+                        </a>
+                        <button class="btn btn-outline-primary resume-trigger"
+                                data-bs-toggle="modal" data-bs-target="#quickResume">
+                            <i class="bi bi-window-stack me-2"></i>Preview
+                        </button>
+                        <a href="assets/resume/Ralph-Bayya-Resume.pdf" class="btn btn-outline-secondary" download>
+                            <i class="bi bi-download me-2"></i>Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Summary -->
+                    <div class="col-lg-4 reveal">
+                        <div class="card-panel h-100">
+                            <h3 class="h5 mb-3"><i class="bi bi-person-lines-fill me-2 text-primary"></i>Profile</h3>
+                            <p class="text-body-secondary small mb-4">
+                                Network &amp; security graduate with real infrastructure experience — a regional
+                                government office and a live school network. Comfortable with Linux, Cisco LAN
+                                gear, structured cabling and web development, and able to work independently
+                                or inside a team.
+                            </p>
+                            <ul class="resume-facts" id="resumeFacts"><!-- JS --></ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="col-lg-8 reveal">
+                        <h3 class="h5 mb-4"><i class="bi bi-briefcase-fill me-2 text-primary"></i>Experience</h3>
+                        <div class="timeline" id="timelineExperience"><!-- JS --></div>
+                    </div>
+
+                    <!-- Education + certs -->
+                    <div class="col-lg-6 reveal">
+                        <h3 class="h5 mb-4"><i class="bi bi-mortarboard-fill me-2 text-primary"></i>Education</h3>
+                        <div class="timeline" id="timelineEducation"><!-- JS --></div>
+                    </div>
+
+                    <div class="col-lg-6 reveal">
+                        <h3 class="h5 mb-4"><i class="bi bi-patch-check-fill me-2 text-primary"></i>Certifications</h3>
+                        <div class="timeline" id="timelineCerts"><!-- JS --></div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1">
+                    <div class="col-lg-12 reveal">
+                        <h3 class="h5 mb-4"><i class="bi bi-calendar-event-fill me-2 text-primary"></i>Seminars &amp; Training</h3>
+                        <ul class="seminar-list" id="seminarList"><!-- JS --></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ AWARDS & RECOGNITION ============ -->
+        <section id="awards" class="section">
+            <div class="glow-orb go-3" aria-hidden="true"></div>
+            <div class="container" style="position:relative;z-index:2">
+                <div class="section-head text-center reveal">
+                    <span class="section-kicker">Milestones</span>
+                    <h2 class="section-title">Awards &amp; <span class="text-gradient">Recognition</span></h2>
+                    <p class="section-sub">Everything here is verifiable — appraisals, conferences and certifications.</p>
+                </div>
+
+                <div class="row g-4" id="awardsGrid"><!-- JS --></div>
+            </div>
+        </section>
+
+        <!-- ============ CONTACT ============ -->
+        <section id="contact" class="section section-light">
+            <div class="container">
+                <div class="section-head text-center reveal">
+                    <span class="section-kicker">Say hello</span>
+                    <h2 class="section-title">Let's <span class="text-gradient">Connect</span></h2>
+                    <p class="section-sub">Hiring for an IT role, or just have a question? My inbox is open.</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-5 reveal">
+                        <ul class="contact-list" id="contactList"><!-- JS --></ul>
+
+                        <div class="social-row" id="socialRow"><!-- JS --></div>
+                    </div>
+
+                    <div class="col-lg-7 reveal">
+                        <form class="card-panel" id="contactForm" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="name">Full name <span class="req">*</span></label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           placeholder="Jane Doe" required minlength="2" autocomplete="name" />
+                                    <div class="invalid-feedback">Please enter your name (min 2 characters).</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="email">Email <span class="req">*</span></label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           placeholder="jane@company.com" required autocomplete="email" />
+                                    <div class="invalid-feedback">Enter a valid email address.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="phone">Phone <span class="text-muted small">(optional)</span></label>
+                                    <input type="tel" class="form-control" id="phone" name="phone"
+                                           placeholder="+1 555 000 1234" autocomplete="tel" />
+                                    <div class="invalid-feedback">Enter a valid phone number.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="subject">Subject <span class="req">*</span></label>
+                                    <select class="form-select" id="subject" name="subject" required>
+                                        <option value="">Choose a topic…</option>
+                                        <option>Full-time IT role</option>
+                                        <option>Network operations</option>
+                                        <option>System administration</option>
+                                        <option>Junior web development</option>
+                                        <option>Internship / work immersion</option>
+                                        <option>Something else</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please pick a subject.</div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="message">Message <span class="req">*</span></label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" required
+                                              minlength="20" placeholder="Tell me about your project, timeline and budget range…"></textarea>
+                                    <div class="invalid-feedback">Message must be at least 20 characters.</div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="consent" required />
+                                        <label class="form-check-label small" for="consent">
+                                            I agree to be contacted about this enquiry. <span class="req">*</span>
+                                        </label>
+                                        <div class="invalid-feedback">Consent is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex flex-wrap gap-3 align-items-center">
+                                    <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                                        <span class="btn-label"><i class="bi bi-send-fill me-2"></i>Send message</span>
+                                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                    </button>
+                                    <span class="small text-body-secondary"><i class="bi bi-clock me-1"></i>Replies within 24 hours.</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-5">
+                    <a class="navbar-brand d-inline-flex align-items-center gap-2 mb-3" href="#home">
+                        <span class="brand-mark">&lt;/&gt;</span>
+                        <span class="brand-text">Ralph<span class="brand-accent">Bayya</span></span>
+                    </a>
+                    <p class="text-body-secondary small mb-0 footer-blurb">
+                        Network &amp; security IT graduate from the University of the Cordilleras. Hands-on with
+                        Cisco LAN infrastructure, Linux administration, structured cabling and web development.
+                        Currently open to IT roles.
+                    </p>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <h4 class="footer-title">Navigate</h4>
+                    <ul class="footer-links" id="footerNav"><!-- JS --></ul>
+                </div>
+
+                <div class="col-6 col-lg-4">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links" id="footerContact"><!-- JS --></ul>
+                    <div class="social-row mt-3" id="footerSocial"><!-- JS --></div>
+                </div>
+            </div>
+
+            <hr class="footer-hr" />
+
+            <div class="footer-bottom">
+                <p class="mb-0 small">&copy; <span id="currentYear">2026</span> Ralph Laurence O. Bayya. All rights reserved.</p>
+                <button class="to-top-inline" data-scroll-to="#home">
+                    <i class="bi bi-arrow-up-circle me-1"></i>Back to top
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============ PROJECT MODAL ============ -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectModalTitle">Project</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="projectModalBody"></div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-outline-light" id="projectLiveLink" target="_blank" rel="noopener">
+                        <i class="bi bi-box-arrow-up-right me-2"></i>Live site
+                    </a>
+                    <a href="#" class="btn btn-outline-light" id="projectRepoLink" target="_blank" rel="noopener">
+                        <i class="bi bi-github me-2"></i>Source code
+                    </a>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ QUICK RESUME MODAL ============ -->
+    <div class="modal fade" id="quickResume" tabindex="-1" aria-labelledby="quickResumeTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quickResumeTitle"><i class="bi bi-file-earmark-person me-2"></i>Quick résumé — Ralph Bayya</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="quickResumeBody"><!-- JS --></div>
+                <div class="modal-footer">
+                    <a href="resume.html" class="btn btn-primary" target="_blank" rel="noopener">
+                        <i class="bi bi-arrows-fullscreen me-2"></i>Open full résumé
+                    </a>
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ TOAST ============ -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast dark-toast" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">Saved</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
