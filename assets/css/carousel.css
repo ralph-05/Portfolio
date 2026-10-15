@@ -290,14 +290,41 @@
     background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
 }
 
+@media (max-width: 991.98px) {
+    .sk3d-shell {
+        --sk3d-card-w: min(280px, calc(100vw - 3rem));
+        width: 100%;
+        overflow: hidden;
+    }
+    .sk3d-stage { width: 100%; }
+}
+
 @media (max-width: 575.98px) {
-    .sk3d-shell { --sk3d-card-w: 230px; --sk3d-card-h: 380px; }
-    .sk3d-stage { width: calc(var(--sk3d-card-w) * 2.4); }
+    .sk3d-shell {
+        --sk3d-card-w: min(230px, calc(100vw - 2.5rem));
+        --sk3d-card-h: 370px;
+        width: 100%;
+        overflow: hidden;
+        padding-top: .5rem;
+    }
+    .sk3d-stage { width: 100%; }
+    .sk3d-face { padding: 1.25rem 1.1rem; }
+    .sk3d-front { gap: .55rem; }
     .sk3d-icon { width: 52px; height: 52px; font-size: 1.5rem; border-radius: 15px; }
     .sk3d-ring { width: 70px; height: 70px; }
     .sk3d-ring-value { font-size: 1.05rem; }
     .sk3d-title { font-size: 1rem; }
     .sk3d-blurb { font-size: .82rem; -webkit-line-clamp: 3; }
+    .sk3d-controls { gap: .65rem; margin-top: 1.25rem; }
+    .sk3d-btn { width: 42px; height: 42px; }
+    .sk3d-dots { gap: .4rem; }
+    .sk3d-dot { width: 8px; height: 8px; }
+    .sk3d-dot.active { width: 22px; }
+}
+
+@media (max-width: 359.98px) {
+    .sk3d-shell { --sk3d-card-w: min(210px, calc(100vw - 2rem)); --sk3d-card-h: 350px; }
+    .sk3d-face { padding: 1rem; }
 }
 
 /* ---------- Reduced motion / no-JS fallback ----------
