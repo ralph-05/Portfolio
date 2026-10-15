@@ -21,7 +21,7 @@ const PORTFOLIO_DATA = {
         location: "Unzad, Villasis, Pangasinan",
         email: "ralphlaurencebayya@gmail.com",
         phone: "+63 991 182 9525",
-        availability: "Open to IT roles — network operations, system administration & support",
+        availability: "Open to IT roles — network operations, system administration, development & support",
         intro: "IT graduate specialising in networking and security, with hands-on experience supporting live office and school networks."
     },
 
